@@ -1,7 +1,7 @@
 
 exports.up = function(knex) {
   return knex.schema.createTable('meetings', table => {
-    table.increments('id').primary
+    table.increments('id').primary()
     table.string('meeting_name')
     table.timestamp('time')
     table.integer('attendees')
