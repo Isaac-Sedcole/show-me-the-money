@@ -1,6 +1,11 @@
 const connection = require('./connection')
 const { generateHash } = require('authenticare/server')
 
+function getUsers (db = connection) {
+  return db('users')
+    .select()
+} 
+
 function createUser (user, db = connection) {
   const newUser = {...user}
   return generateHash(newUser.password)
@@ -26,5 +31,6 @@ function getUserByUsername (username, db = connection) {
 module.exports = {
   createUser,
   userExists,
-  getUserByUsername
+  getUserByUsername,
+  getUsers
 }
