@@ -17,6 +17,10 @@ function Meeting(props) {
     }
     return () => clearInterval(interval)
   }, [buttonStart, count])
+
+  useEffect(() => {
+    //loadstuff(users)
+  },[])
   
 	const handleButtonChange = (e) => {
     setButtonStart(!buttonStart)
