@@ -25,7 +25,7 @@ function Login (props) {
     e.preventDefault()
     let { username, password } = formData
     const confirmSuccess = () => {
-      props.history.push("/")
+      props.history.push("/meeting")
     }
     props.dispatch(loginUser({ username, password }, confirmSuccess))
   }

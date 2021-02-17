@@ -11,7 +11,8 @@ function Register (props) {
     first_name: '',
     last_name: '',
     password: '',
-    confirm_password: ''
+    confirm_password: '',
+    hourly_wage: ''
   })
    
   useEffect(() => {
@@ -30,10 +31,10 @@ function Register (props) {
   const handleSubmit = (e) => {
     e.preventDefault()
     e.target.reset()
-    let {username, password, confirm_password, first_name, last_name} = formData
+    let {username, password, confirm_password, first_name, last_name, hourly_wage} = formData
     if (confirm_password != password) return props.dispatch(loginError("Passwords don't match"))
-    const confirmSuccess = () => { props.history.push('/') }
-    props.dispatch(registerUserRequest({username, password, first_name, last_name}, confirmSuccess))
+    const confirmSuccess = () => { props.history.push('/meeting') }
+    props.dispatch(registerUserRequest({username, password, first_name, last_name, hourly_wage}, confirmSuccess))
   }
 
     return (
@@ -52,6 +53,11 @@ function Register (props) {
             <input required className="input is-large has-text-centered is-fullwidth" placeholder="Last Name" type="text" name="last_name" onChange={handleChange} value={formData.last_name}/>
           </label>
         </div>
+        <div className='columns'>
+          <label className="column is-6 label is-large has-text-centered">Hourly wage
+            <input required className="input is-large has-text-centered is-fullwidth" placeholder="Hourly wage" type="text" name="hourly_wage" onChange={handleChange} value={formData.hourly_wage}/>
+          </label>
+        </div> 
         <br />
         <div className="columns">
           <label className="column is-6 label is-large has-text-centered">Password
