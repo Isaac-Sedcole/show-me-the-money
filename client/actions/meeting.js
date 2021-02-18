@@ -1,5 +1,4 @@
-import { getMeetings } from '../../server/db/meetings'
-import { addMeeting, getUsers } from '../apis/meeting'
+import { addMeeting, getUsers, getMeetings  } from '../apis/meeting'
 
 export const SET_USERS = 'SET_USERS'
 export const SET_MEETINGS = 'SET_MEETINGS'

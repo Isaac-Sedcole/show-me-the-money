@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react'
-import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts'
 import { connect } from 'react-redux'
+import { fetchMeetings } from '../actions/meeting'
 
 const Graph = (props) => {
+
+  useEffect(() => {
+    props.dispatch(fetchMeetings())
+  }, [])
 
   const data = props.meetings.map(meeting => {
     return {
@@ -12,11 +17,11 @@ const Graph = (props) => {
   })
   
 
-  const data = [
-    {name: 'first-meeting', cost: 300},
-    {name: 'second-meeting', cost: 350},
-    {name: 'thrid-meeting', cost: 200}
-  ]
+  // const data = [
+  //   {name: 'first-meeting', cost: 300},
+  //   {name: 'second-meeting', cost: 350},
+  //   {name: 'thrid-meeting', cost: 200}
+  // ]
 
   return (
     <LineChart width={600} height={300} data={data}>
@@ -31,7 +36,7 @@ const Graph = (props) => {
 
 const mapStateToProps = (globalState) => {
   return {
-    meeting: globalState.meetings
+    meetings: globalState.meetings
   }
 }
 
