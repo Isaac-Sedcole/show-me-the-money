@@ -1,7 +1,8 @@
-import { addMeeting, getUsers, getMeetings } from '../apis/meeting'
+import { addMeeting, getUsers, getMeetings, getMeeting } from '../apis/meeting'
 
 export const SET_USERS = 'SET_USERS'
 export const SET_MEETINGS = 'SET_MEETINGS'
+export const SET_MEETING = 'SET_MEETING'
 
 export function setUsers (users) {
   return {
@@ -17,11 +18,29 @@ export function setMeetings(meetings) {
   }
 }
 
+export function setMeeting(meeting) {
+  return {
+    type: SET_MEETING,
+    meeting
+  }
+}
+
 export function fetchMeetings() {
   return dispatch => {
     return getMeetings()
     .then(meetings => {
       dispatch(setMeetings(meetings))
+      return null
+    })
+  }
+}
+
+export function fetchMeeting(id) {
+  // console.log("being called")
+  return dispatch => {
+    return getMeeting(id)
+    .then(meeting => {
+      dispatch(setMeeting(meeting))
       return null
     })
   }

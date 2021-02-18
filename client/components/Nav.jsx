@@ -25,8 +25,10 @@ function Nav ({auth, logout}) {
         <div id="navbarMenuHeroA" className={`navbar-menu ${burgerVisible ? "is-active" : ''}`}>
           <div className="navbar-end">
             { auth.isAuthenticated
-              ? (
+              ? (<>
+                  <Link to='/histories' className="navbar-item is-large" >All Meetings</Link>
                   <Link to='/' className="navbar-item is-large" onClick={() => logout()}>Logout</Link>
+                  </>
                 )
               : (
                 <>
