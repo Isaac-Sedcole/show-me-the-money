@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { addMeeting, getUsers, getMeetings  } from '../apis/meeting'
+=======
+import { addMeeting, getUsers, getMeetings } from '../apis/meeting'
+>>>>>>> 67ad95edc11807eb208a310d1d1a74482d15c1d0
 
 export const SET_USERS = 'SET_USERS'
 export const SET_MEETINGS = 'SET_MEETINGS'
