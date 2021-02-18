@@ -6,12 +6,22 @@ function Meeting(props) {
 	const [count, setCount] = useState(0)
   const [buttonStart, setButtonStart] = useState(true)
   const [attendees, setAttendees] = useState([])
+  const [cost, setCost] = useState(0)
+
 
 	useEffect(() => {
 		let interval = null
 		if (!buttonStart) {
+    let avgCost = 0
+    attendees.map(attendee => {
+      avgCost += attendee.hourly_wage 
+      return null
+    })
+    avgCost = avgCost / 3600
+    console.log(cost)
 			interval = setInterval(() => {
-				setCount((count) => count + 1)
+        setCount((count) => count + 1)
+        setCost(newCost => newCost + avgCost)
 			}, 1000)
 		} else {
 			clearInterval(interval)
@@ -30,10 +40,8 @@ function Meeting(props) {
   const checkBoxHandler =  (user) => {
     setAttendees(currentAttendees => {
       let newArr = currentAttendees.filter(attendee => {
-        // console.log(attendee.id, user.id)
         return user.id != attendee.id
       })
-      // console.log(newArr)
       return newArr.length == currentAttendees.length 
       ?  [...newArr, user]
       : [...newArr]
@@ -58,7 +66,7 @@ function Meeting(props) {
 				<button onClick={handleButtonChange}>Stop Meeting</button>
 			)}
 			<p>{count}</p>
-			{/* <p>{props.user.last_name}</p> */}
+      <p>${cost.toFixed(2)}</p>
 		</div>
 	)
 }
