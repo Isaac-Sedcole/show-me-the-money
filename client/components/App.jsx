@@ -7,6 +7,7 @@ import Register from './Register'
 import Nav from './Nav'
 import Meeting from './Meeting'
 import History from './History'
+import Graph from './Graph'
 
 import {checkAuth} from '../actions/auth'
 
@@ -19,6 +20,7 @@ function App ({auth, dispatch}) {
 
     return (
       <Router>
+        <Graph />
         <div className="container has-text-centered">
 
           <div className="hero is-small is-primary">
