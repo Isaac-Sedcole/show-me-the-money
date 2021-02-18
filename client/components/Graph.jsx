@@ -11,7 +11,8 @@ const Graph = (props) => {
 
   const data = props.meetings.map(meeting => {
     return {
-      name: meeting.meeting_name,
+      name: meeting.meeting_name
+      ,
       cost: meeting.cost
     }
   })
