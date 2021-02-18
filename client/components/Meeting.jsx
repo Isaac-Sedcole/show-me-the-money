@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
+import { Redirect, Link } from 'react-router-dom'
 import { fetchUsers } from '../actions/meeting'
 
 function Meeting(props) {
@@ -7,6 +8,8 @@ function Meeting(props) {
   const [buttonStart, setButtonStart] = useState(true)
   const [attendees, setAttendees] = useState([])
   const [cost, setCost] = useState(0)
+  const [redirect, setRedirect] = useState(false)
+  const [formData, setFormData] = useState('')
 
 
 	useEffect(() => {
@@ -24,7 +27,9 @@ function Meeting(props) {
         setCost(newCost => newCost + avgCost)
 			}, 1000)
 		} else {
-			clearInterval(interval)
+      console.log('cheese')
+      clearInterval(interval)
+      setRedirect(true)
 		}
 		return () => clearInterval(interval)
 	}, [buttonStart, count])
@@ -48,6 +53,20 @@ function Meeting(props) {
     })
   }
 
+  const handleInputChange = () => {
+
+
+  }
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault()
+    setFormData(e.target.meeting_name.value)
+    e.target.meeting_name.value = ''
+  }
+
+  const sendToHistory = () => {
+  }
+
 	return (
 		<div className="container">
 			<ul>
@@ -60,13 +79,24 @@ function Meeting(props) {
 					)
 				})}
 			</ul>
+      <form onSubmit={handleFormSubmit}>
+        <label> Meeting Name
+          <input type='text' name='meeting_name' placeholder='meeting name' onChange={handleInputChange}> 
+          </input>
+          <button>
+            set meeting name
+          </button>
+        </label>
+      </form>
+     {formData != '' &&  <p>Meeting Name: {formData}</p>}
 			{buttonStart ? (
 				<button onClick={handleButtonChange}>Start Meeting</button>
 			) : (
-				<button onClick={handleButtonChange}>Stop Meeting</button>
+				<button onClick={sendToHistory}><Link to='/history'>Stop Meeting</Link></button>
 			)}
 			<p>{count}</p>
       <p>${cost.toFixed(2)}</p>
+      {/* {redirect && <Redirect to='/history'/>} */}
 		</div>
 	)
 }
@@ -74,7 +104,8 @@ function Meeting(props) {
 const mapStateToProps = (globalState) => {
 	return {
 		user: globalState.auth.user,
-		users: globalState.users,
+    users: globalState.users,
+    
 	}
 }
 

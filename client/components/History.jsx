@@ -1,5 +1,6 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+
 
 function History () {
   return <div className="container">
@@ -7,4 +8,10 @@ function History () {
   </div>
 }
 
-export default connect()(History)
+const mapStateToProps = (globalState) => {
+  return {
+    meetings: globalState.meetings
+  }
+}
+
+export default connect(mapStateToProps)(History)
