@@ -17,3 +17,8 @@ export function getMeetings() {
   return request.get(baseUrl+"/meetings")
   .then(res => res.body)
 }
+
+export function getMeeting(id) {
+  return request.get(baseUrl + '/meetings/' + id)
+  .then(res => res.body)
+}

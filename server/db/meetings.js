@@ -15,8 +15,8 @@ function getMeeting(meetingId, db = connection) {
             .where("attendees.meeting_id", meetingId)
             .select("users.id as user_Id", "users.username")
             .then((users) => {
-              console.log(users);
-              meeting.users = users;
+              // console.log(users)
+              meeting.users = users
               return meeting;
             });
         })
@@ -45,6 +45,7 @@ function getMeeting(meetingId, db = connection) {
 function addMeeting(meeting, db = connection) {
   return db("meetings")
     .insert(meeting)
+    
 } 
 
 

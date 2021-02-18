@@ -7,7 +7,7 @@ import Register from './Register'
 import Nav from './Nav'
 import Meeting from './Meeting'
 import History from './History'
-import Graph from './Graph'
+import Histories from './Histories'
 
 import {checkAuth} from '../actions/auth'
 
@@ -20,7 +20,6 @@ function App ({auth, dispatch}) {
 
     return (
       <Router>
-        <Graph />
         <div className="container has-text-centered">
 
           <div className="hero is-small is-primary">
@@ -40,6 +39,7 @@ function App ({auth, dispatch}) {
             <Route path="/register" component={Register} />
             <Route path="/meeting" component={Meeting} />
             <Route path="/history" component={History} />
+            <Route path="/histories" component={Histories} />
           </div>
 
         </div>
