@@ -2,6 +2,7 @@ import { addMeeting, getUsers, getMeetings } from '../apis/meeting'
 
 export const SET_USERS = 'SET_USERS'
 export const SET_MEETINGS = 'SET_MEETINGS'
+export const UPDATE_RECENT = 'UPDATE_RECENT'
 
 export function setUsers (users) {
   return {
@@ -38,11 +39,19 @@ export function fetchUsers () {
 }
 
 export function addMeetingAction(meeting, userIds) {
+  // console.log(meeting, userIds)
   return dispatch => {
     return addMeeting(meeting, userIds)
       .then(() => {
         dispatch(fetchMeetings())
         return null
       })
+  }
+}
+
+export function updateRecentMeeting(meeting) {
+  return {
+    type: UPDATE_RECENT,
+    meeting
   }
 }

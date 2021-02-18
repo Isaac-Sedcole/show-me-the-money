@@ -29,6 +29,7 @@ router.post('/', (req, res) => {
   const userids = req.body.userids
   return addMeeting(meeting)
     .then(meetingId => {
+      // console.log(meetingId)
       addMeetingAttendees(meetingId[0], userids)
         .then(() => {
           res.sendStatus(200)
