@@ -15,6 +15,14 @@ exports.seed = function (knex) {
             first_name: 'Admin',
             last_name: 'Istrator',
             hourly_wage: 300,
+          },
+          {
+            id: 2,
+            username: 'miguel',
+            password: 'password',
+            first_name: 'Miguel',
+            last_name: 'Parqueno',
+            hourly_wage: 250,
           }
         ].map(user => {
           return generateHash(user.password)
