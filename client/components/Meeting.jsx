@@ -10,6 +10,8 @@ function Meeting(props) {
   const [cost, setCost] = useState(0)
   const [redirect, setRedirect] = useState(false)
   const [formData, setFormData] = useState('')
+  const [meeting , setMeeting] = useState(null)
+  const [attendeesIds, setAttendeesIds] = useState([])
 
 
 	useEffect(() => {
@@ -53,11 +55,6 @@ function Meeting(props) {
     })
   }
 
-  const handleInputChange = () => {
-
-
-  }
-
   const handleFormSubmit = (e) => {
     e.preventDefault()
     setFormData(e.target.meeting_name.value)
@@ -65,6 +62,19 @@ function Meeting(props) {
   }
 
   const sendToHistory = () => {
+    setAttendeesIds(attendees.map(attendee => {
+      return attendee.id
+    }))
+    setMeeting(() => {
+      return {
+        meeting_name:formData,
+        time: new Date(),
+        attendees: attendees.length,
+        meeting_length: count,
+        cost: cost
+      }
+    })
+    props.dispatch(addMeetingAction(meeting, attendeesIds))
   }
 
 	return (
@@ -81,22 +91,23 @@ function Meeting(props) {
 			</ul>
       <form onSubmit={handleFormSubmit}>
         <label> Meeting Name
-          <input type='text' name='meeting_name' placeholder='meeting name' onChange={handleInputChange}> 
+          <input type='text' name='meeting_name' placeholder='meeting name'> 
           </input>
           <button>
             set meeting name
           </button>
         </label>
       </form>
-     {formData != '' &&  <p>Meeting Name: {formData}</p>}
-			{buttonStart ? (
-				<button onClick={handleButtonChange}>Start Meeting</button>
-			) : (
-				<button onClick={sendToHistory}><Link to='/history'>Stop Meeting</Link></button>
-			)}
-			<p>{count}</p>
-      <p>${cost.toFixed(2)}</p>
-      {/* {redirect && <Redirect to='/history'/>} */}
+     {formData != '' &&  <div><p>Meeting Name: {formData}</p>
+     {buttonStart ? (
+      <button onClick={handleButtonChange}>Start Meeting</button>
+    ) : (
+      <button onClick={sendToHistory}><Link to='/history'>Stop Meeting</Link></button>
+    )}
+    <p>{count}</p>
+    <p>${cost.toFixed(2)}</p> </div>
+     } 
+			
 		</div>
 	)
 }
