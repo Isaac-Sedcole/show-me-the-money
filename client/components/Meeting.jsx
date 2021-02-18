@@ -8,7 +8,6 @@ function Meeting(props) {
   const [buttonStart, setButtonStart] = useState(true)
   const [attendees, setAttendees] = useState([])
   const [cost, setCost] = useState(0)
-  const [redirect, setRedirect] = useState(false)
   const [formData, setFormData] = useState('')
   const [meeting , setMeeting] = useState(null)
   const [attendeesIds, setAttendeesIds] = useState([])
@@ -23,15 +22,12 @@ function Meeting(props) {
       return null
     })
     avgCost = avgCost / 3600
-    console.log(cost)
 			interval = setInterval(() => {
         setCount((count) => count + 1)
         setCost(newCost => newCost + avgCost)
 			}, 1000)
 		} else {
-      console.log('cheese')
       clearInterval(interval)
-      setRedirect(true)
 		}
 		return () => clearInterval(interval)
 	}, [buttonStart, count])
@@ -65,16 +61,24 @@ function Meeting(props) {
     setAttendeesIds(attendees.map(attendee => {
       return attendee.id
     }))
-    setMeeting(() => {
-      return {
-        meeting_name:formData,
-        time: new Date(),
-        attendees: attendees.length,
-        meeting_length: count,
-        cost: cost
-      }
+    .then(() => {
+
+      setMeeting(() => {
+        //this needs to be put into a seperate function
+        return {
+          meeting_name:formData,
+          time: new Date(),
+          attendees: attendees.length,
+          meeting_length: count,
+          cost: cost
+        }
+      })
+      .then(() => {
+
+        props.dispatch(addMeetingAction(meeting, attendeesIds))
+      })
     })
-    props.dispatch(addMeetingAction(meeting, attendeesIds))
+    // console.log(meeting)
   }
 
 	return (
