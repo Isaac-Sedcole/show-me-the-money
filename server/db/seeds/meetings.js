@@ -9,7 +9,8 @@ exports.seed = function(knex) {
           id: 1, 
           meeting_name: 'first meeting', 
           time: null, 
-          attendees: 2, 
+          attendees: 2,
+          meeting_length: 1800,
           cost: 1000.67 
         },
       ]);

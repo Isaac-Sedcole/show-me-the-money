@@ -5,6 +5,7 @@ exports.up = function(knex) {
     table.string('meeting_name')
     table.timestamp('time')
     table.integer('attendees')
+    table.integer('meeting_length')
     table.decimal('cost')
   })
 };

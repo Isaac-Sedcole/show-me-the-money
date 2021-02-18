@@ -66,6 +66,7 @@ function Meeting(props) {
 				<button onClick={handleButtonChange}>Stop Meeting</button>
 			)}
 			<p>{count}</p>
+      <p>${cost.toFixed(2)}</p>
 		</div>
 	)
 }
