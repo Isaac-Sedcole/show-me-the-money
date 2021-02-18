@@ -9,8 +9,15 @@ export function getUsers () {
 
 export function addMeeting(meeting, userids) {
   return request.post(baseUrl+"/meetings")
-  .send(meeting,userids)
-  .then(res => res.body)
+  .send(
+    {
+      meeting: meeting,
+      userids: userids
+    }
+    )
+  .then(res => {
+    // console.log(res)
+    return res.body})
 }
 
 export function getMeetings() {

@@ -14,6 +14,19 @@ function Meeting(props) {
 
 
 	useEffect(() => {
+    setAttendeesIds(attendees.map(attendee => {
+      return attendee.id
+    }))
+    setMeeting(() => {
+      //this needs to be put into a seperate function
+      return {
+        meeting_name:formData,
+        time: new Date(),
+        attendees: attendees.length,
+        meeting_length: count,
+        cost: cost
+      }
+    })
 		let interval = null
 		if (!buttonStart) {
     let avgCost = 0
@@ -58,28 +71,25 @@ function Meeting(props) {
   }
 
   const sendToHistory = () => {
-    setAttendeesIds(attendees.map(attendee => {
-      return attendee.id
-    }))
-    .then(() => {
+    
 
-      setMeeting(() => {
-        //this needs to be put into a seperate function
-        return {
-          meeting_name:formData,
-          time: new Date(),
-          attendees: attendees.length,
-          meeting_length: count,
-          cost: cost
-        }
-      })
-      .then(() => {
-
+      // setMeeting(() => {
+      //   //this needs to be put into a seperate function
+      //   return {
+      //     meeting_name:formData,
+      //     time: new Date(),
+      //     attendees: attendees.length,
+      //     meeting_length: count,
+      //     cost: cost
+      //   }
+      // })
+        // console.log(attendeesIds, meeting)
+        props.dispatch(updateRecentMeeting(meeting))
         props.dispatch(addMeetingAction(meeting, attendeesIds))
-      })
-    })
+      
+    }
     // console.log(meeting)
-  }
+  
 
 	return (
 		<div className="container">
@@ -106,7 +116,8 @@ function Meeting(props) {
      {buttonStart ? (
       <button onClick={handleButtonChange}>Start Meeting</button>
     ) : (
-      <button onClick={sendToHistory}><Link to='/history'>Stop Meeting</Link></button>
+      <button onClick={sendToHistory}>
+        <Link to="/history">Stop Meeting</Link></button>
     )}
     <p>{count}</p>
     <p>${cost.toFixed(2)}</p> </div>
