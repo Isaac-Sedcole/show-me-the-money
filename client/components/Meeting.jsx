@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { Redirect, Link } from 'react-router-dom'
-import { fetchUsers, addMeetingAction } from '../actions/meeting'
+import { fetchUsers, addMeetingAction, updateRecentMeeting } from '../actions/meeting'
 
 function Meeting(props) {
 	const [count, setCount] = useState(0)
@@ -84,7 +84,7 @@ function Meeting(props) {
       //   }
       // })
         // console.log(attendeesIds, meeting)
-        props.dispatch(updateRecentMeeting(meeting))
+        // props.dispatch(updateRecentMeeting(meeting))
         props.dispatch(addMeetingAction(meeting, attendeesIds))
       
     }
