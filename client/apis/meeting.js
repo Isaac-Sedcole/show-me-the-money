@@ -12,3 +12,8 @@ export function addMeeting(meeting, userids) {
   .send(meeting,userids)
   .then(res => res.body)
 }
+
+export function getMeetings() {
+  return request.get(baseUrl+"/meetings")
+  .then(res => res.body)
+}

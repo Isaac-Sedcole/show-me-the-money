@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
+import { Redirect, Link } from 'react-router-dom'
 import { fetchUsers } from '../actions/meeting'
 
 function Meeting(props) {
@@ -7,6 +8,10 @@ function Meeting(props) {
   const [buttonStart, setButtonStart] = useState(true)
   const [attendees, setAttendees] = useState([])
   const [cost, setCost] = useState(0)
+  const [redirect, setRedirect] = useState(false)
+  const [formData, setFormData] = useState('')
+  const [meeting , setMeeting] = useState(null)
+  const [attendeesIds, setAttendeesIds] = useState([])
 
 
 	useEffect(() => {
@@ -24,7 +29,9 @@ function Meeting(props) {
         setCost(newCost => newCost + avgCost)
 			}, 1000)
 		} else {
-			clearInterval(interval)
+      console.log('cheese')
+      clearInterval(interval)
+      setRedirect(true)
 		}
 		return () => clearInterval(interval)
 	}, [buttonStart, count])
@@ -48,6 +55,28 @@ function Meeting(props) {
     })
   }
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault()
+    setFormData(e.target.meeting_name.value)
+    e.target.meeting_name.value = ''
+  }
+
+  const sendToHistory = () => {
+    setAttendeesIds(attendees.map(attendee => {
+      return attendee.id
+    }))
+    setMeeting(() => {
+      return {
+        meeting_name:formData,
+        time: new Date(),
+        attendees: attendees.length,
+        meeting_length: count,
+        cost: cost
+      }
+    })
+    props.dispatch(addMeetingAction(meeting, attendeesIds))
+  }
+
 	return (
 		<div className="container">
 			<ul>
@@ -60,13 +89,25 @@ function Meeting(props) {
 					)
 				})}
 			</ul>
-			{buttonStart ? (
-				<button onClick={handleButtonChange}>Start Meeting</button>
-			) : (
-				<button onClick={handleButtonChange}>Stop Meeting</button>
-			)}
-			<p>{count}</p>
-      <p>${cost.toFixed(2)}</p>
+      <form onSubmit={handleFormSubmit}>
+        <label> Meeting Name
+          <input type='text' name='meeting_name' placeholder='meeting name'> 
+          </input>
+          <button>
+            set meeting name
+          </button>
+        </label>
+      </form>
+     {formData != '' &&  <div><p>Meeting Name: {formData}</p>
+     {buttonStart ? (
+      <button onClick={handleButtonChange}>Start Meeting</button>
+    ) : (
+      <button onClick={sendToHistory}><Link to='/history'>Stop Meeting</Link></button>
+    )}
+    <p>{count}</p>
+    <p>${cost.toFixed(2)}</p> </div>
+     } 
+			
 		</div>
 	)
 }
@@ -74,7 +115,8 @@ function Meeting(props) {
 const mapStateToProps = (globalState) => {
 	return {
 		user: globalState.auth.user,
-		users: globalState.users,
+    users: globalState.users,
+    
 	}
 }
 
