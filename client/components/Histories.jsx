@@ -31,7 +31,7 @@ function Histories (props) {
       </button>
       <ul>
         { showingGraph ? <Graph /> : 
-          meetings.map(meeting => {
+          meetings.reverse().map(meeting => {
           return (
             <li key={meeting.id}>
               <MeetingInfo meetingLocal={meeting}/>
