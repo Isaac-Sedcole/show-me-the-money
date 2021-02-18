@@ -61,9 +61,13 @@ export function addMeetingAction(meeting, userIds) {
   // console.log(meeting, userIds)
   return dispatch => {
     return addMeeting(meeting, userIds)
-      .then(() => {
-        dispatch(fetchMeetings())
-        return null
+      .then(id => {
+        console.log(id)
+        return getMeeting(id)
+        .then(() => {
+          dispatch(fetchMeetings())
+          return null
+        })
       })
   }
 }

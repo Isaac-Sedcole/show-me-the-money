@@ -84,7 +84,7 @@ function Meeting(props) {
       //   }
       // })
         // console.log(attendeesIds, meeting)
-        props.dispatch(updateRecentMeeting(meeting))
+        // props.dispatch(updateRecentMeeting(meeting))
         props.dispatch(addMeetingAction(meeting, attendeesIds))
       
     }
