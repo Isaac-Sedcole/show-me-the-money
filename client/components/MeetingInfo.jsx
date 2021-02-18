@@ -1,24 +1,41 @@
 import React, { useState,useEffect } from 'react'
 import { connect } from 'react-redux'
 import { fetchMeeting } from '../actions/meeting'
+import { getMeeting } from '../apis/meeting'
 
 function MeetingInfo (props) {
 
+  const [attendeesShowing, setAttendeesShowing ] = useState(false)
+  const [ meeting, setMeeting ] = useState({})
+
   const meetingLocal = props.meetingLocal
-  const meeting = props.meeting[0]
   // const meeting = props.meeting
   
-  useEffect(() => {
-    props.dispatch(fetchMeeting(meetingLocal.id))
-  },[])
+    // useEffect(() => {
+    //   props.dispatch(fetchMeeting(meetingLocal.id))
+    // },[])
 
-  const [infoShowing, setInfoShowing] = useState(false)
-
-  const handleClick = () => {
-    setInfoShowing(!infoShowing)
-    // fetchMeeting(meetingId)
-  }
-
+    useEffect(() => {
+      getMeeting(meetingLocal.id)
+        .then(meeting => {
+          console.log('thisone',meeting)
+          setMeeting(meeting[0])
+        })
+    }, [])
+    
+    const [infoShowing, setInfoShowing] = useState(false)
+    
+    const handleClick = () => {
+      setInfoShowing(!infoShowing)
+      // fetchMeeting(meetingId)
+    }
+    
+    const handleAttendees = () => {
+      props.dispatch(fetchMeeting(meetingLocal.id))
+      setAttendeesShowing(!attendeesShowing)
+    }
+    // const meeting = props.meeting[0]
+    
   return (
     <div>
     <button onClick={handleClick}>{meetingLocal.meeting_name} 
@@ -29,14 +46,19 @@ function MeetingInfo (props) {
         <li>{meetingLocal.attendees}</li>
         <li>{meetingLocal.time}</li>
         <li>{meetingLocal.cost}</li>
-        <li>Meeting attendees:
+        <li>
+          <button onClick={handleAttendees}>
+            view Meeting attendees
+          </button>
+        
+          {attendeesShowing && 
           <ul>
             {meeting.users.map(user => {
               return (
                 <li key={user.user_Id}>{user.username}</li>
               )
             })}
-          </ul>
+          </ul>}
         </li>
       </ul>
     }
@@ -44,11 +66,11 @@ function MeetingInfo (props) {
   ) 
 }
 
-const mapStateToProps = (globalState) => {
-  return {
-    meeting: globalState.meeting
-    // meeting: globalState.meeting
-  }
-}
+// const mapStateToProps = (globalState) => {
+//   return {
+//     meeting: globalState.meeting
+//     // meeting: globalState.meeting
+//   }
+// }
 
-export default connect(mapStateToProps)(MeetingInfo)
+export default connect()(MeetingInfo)

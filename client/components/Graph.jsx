@@ -9,10 +9,9 @@ const Graph = (props) => {
     props.dispatch(fetchMeetings())
   }, [])
 
-  const data = props.meetings.map(meeting => {
+  const data = props.meetings.reverse().map(meeting => {
     return {
-      name: meeting.meeting_name
-      ,
+      name: meeting.meeting_name,
       cost: meeting.cost
     }
   })
