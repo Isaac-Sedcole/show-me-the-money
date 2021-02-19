@@ -24,23 +24,28 @@ function Histories (props) {
 
   return (
     <div className='history-container'>
+      <br></br>
       <h1>Meeting History</h1>
-      <button
-        className='graph-button' 
-        onClick={handleGraphClick} >
+      <br></br>
+      <button onClick={handleGraphClick}>
           { !showingGraph ? "$how me the Graph-y" :
           "$how me the list-y" } 
       </button>
+      <br></br>
+      <br></br>
       <ul>
         { showingGraph ? <Graph /> : 
           meetings.reverse().map(meeting => {
           return (
             <li key={meeting.id}>
               <MeetingInfo meetingLocal={meeting}/>
+              <br></br>
             </li>
+           
           )
         })}
       </ul>
+      <br></br>
     </div>
   ) 
 }
