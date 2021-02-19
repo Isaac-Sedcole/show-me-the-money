@@ -29,15 +29,18 @@ function History(props) {
           <li><h2>Meeting name: {reversedMeetings.meeting_name}</h2></li>
           <li>Date of meeting: {reversedMeetings.time.substr(0,10)}</li>
           <li>
-            time of meeting : {reversedMeetings.time.substr(11,8)}
+            Time of meeting : {reversedMeetings.time.substr(11,8)}
           </li>
           <li>How many people attended: {reversedMeetings.attendees}</li>
           <li>${reversedMeetings.cost.toFixed(2)}</li>
           <li>Meeting Length(seconds): {reversedMeetings.meeting_length}</li>
+          <br></br>
         </ul>
           <form onSubmit={handleSubmit}>
             <label> Add comments:
               <input type="text" name="comments" placeholder="comment here"></input>
+              <br></br>
+              <br></br>
               <button>Send!</button>
             </label>
           </form>

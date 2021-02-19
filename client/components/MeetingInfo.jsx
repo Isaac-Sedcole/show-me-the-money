@@ -42,11 +42,14 @@ function MeetingInfo (props) {
       <em>{meetingLocal.time}</em>
     </button>
     {infoShowing && 
+      
       <ul>
-        <li>{meetingLocal.attendees}</li>
-        <li>{meetingLocal.time}</li>
-        <li>{meetingLocal.cost}</li>
+        <br></br>
+        <li>Attendee Number: {meetingLocal.attendees}</li>
+        <li>Time: {meetingLocal.time}</li>
+        <li>Cost: {meetingLocal.cost}</li>
         <li>
+        <br></br>
           <button onClick={handleAttendees}>
             view Meeting attendees
           </button>
@@ -55,7 +58,7 @@ function MeetingInfo (props) {
           <ul>
             {meeting.users.map(user => {
               return (
-                <li key={user.user_Id}>{user.username}</li>
+                <li key={user.user_Id}>Attendees: {user.username}</li>
               )
             })}
           </ul>}
