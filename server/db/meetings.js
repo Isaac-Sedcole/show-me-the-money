@@ -44,7 +44,7 @@ function getMeeting(meetingId, db = connection) {
 
 function addMeeting(meeting, db = connection) {
   return db("meetings")
-    .insert(meeting)
+    .insert(meeting, 'id')
     
 } 
 
@@ -56,7 +56,7 @@ function addMeetingAttendees(meetingId, userids, db = connection) {
         .insert({
           user_id: userid,
           meeting_id: meetingId,
-        })
+        }, 'id')
       }))
 }
 
