@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
 
 // Import custom variables and Bulma overides
-@import "./layout.scss";
+
 @import "./variables.scss";
 
 // Import only what you need from Bulma
@@ -18,26 +18,4 @@
 @import "bulma/sass/layout/hero.sass";
 @import "bulma/sass/layout/section.sass";
 
-
-.history-container {
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.graph-button {
-  margin: auto;
-  max-width: 100px;
-  margin-bottom: 30px;
-  background-color: chartreuse;
-}
-
-.meeting-button {
-  border: 0px;
-}
-
-.meeting-button:hover {
-  cursor: pointer;
-}
-
+@import "./layout.scss";

@@ -29,7 +29,7 @@ function History(props) {
     console.log(typeof reversedMeetings.cost)
     return (
       <div className="container">
-			<h2 className="title is-2">Meeting history</h2>
+			<h1>Meeting history</h1>
       { reversedMeetings &&
         <div>
          <ul>
@@ -39,7 +39,7 @@ function History(props) {
             Time of meeting : {reversedMeetings.time.substr(11,8)}
           </li>
           <li>How many people attended: {reversedMeetings.attendees}</li>
-          <li>${reversedMeetings.cost.toFixed(2)}</li>
+          <li>Cost: ${reversedMeetings.cost.toFixed(2)}</li>
 
           <li>Meeting Length(minutes:seconds): {
           convertSecondsToMinutes(reversedMeetings.meeting_length)}</li>
@@ -48,6 +48,7 @@ function History(props) {
         </ul>
           <form onSubmit={handleSubmit}>
             <label> Add comments:
+              <br></br>
               <input type="text" name="comments" placeholder="comment here"></input>
               <br></br>
               <br></br>

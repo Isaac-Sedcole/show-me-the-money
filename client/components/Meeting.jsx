@@ -94,6 +94,10 @@ function Meeting(props) {
 	return (
 		<div className="container">
       <br></br>
+      <h1> Create a New Meeting</h1>
+      <br></br>
+      <p>Select Users:</p>
+      <br></br>
 			<ul>
 				{props.users.map((u) => {
 					return (
@@ -106,7 +110,8 @@ function Meeting(props) {
 			</ul>
       <form onSubmit={handleFormSubmit}>
       <br></br>
-        <label> Meeting Name
+        <label> Meeting Name 
+          <br></br>
           <input type='text' name='meeting_name' placeholder='meeting name'> 
           </input>
           <br></br>

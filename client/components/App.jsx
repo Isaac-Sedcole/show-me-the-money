@@ -24,9 +24,14 @@ function App ({auth, dispatch}) {
 
           <div className="hero is-small is-primary">
             <div className="hero-body has-text-centered">
-              <Link to='/' className="">
+            {!auth.isAuthenticated &&
+              <Link to='/register' className="">
                 <h1 className="title is-1">$how Me The Money</h1>
-              </Link>
+              </Link>}
+              {auth.isAuthenticated &&
+              <Link to='/meeting' className="">
+                <h1 className="title is-1">$how Me The Money</h1>
+              </Link>}
               <Route path="/" component={Nav} />
             </div>
           </div>
