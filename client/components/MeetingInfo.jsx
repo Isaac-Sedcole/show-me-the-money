@@ -37,8 +37,10 @@ function MeetingInfo (props) {
     // const meeting = props.meeting[0]
     
   return (
-    <div>
-    <button onClick={handleClick}>{meetingLocal.meeting_name} 
+    <div className="meeting-item">
+     -- <button onClick={handleClick}
+          className='meeting-button' >
+       {meetingLocal.meeting_name} 
       <em>{meetingLocal.time}</em>
     </button>
     {infoShowing && 

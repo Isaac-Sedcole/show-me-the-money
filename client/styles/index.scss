@@ -16,3 +16,27 @@
 @import "bulma/sass/components/navbar.sass";
 @import "bulma/sass/layout/hero.sass";
 @import "bulma/sass/layout/section.sass";
+
+
+.history-container {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.graph-button {
+  margin: auto;
+  max-width: 100px;
+  margin-bottom: 30px;
+  background-color: chartreuse;
+}
+
+.meeting-button {
+  border: 0px;
+}
+
+.meeting-button:hover {
+  cursor: pointer;
+}
+

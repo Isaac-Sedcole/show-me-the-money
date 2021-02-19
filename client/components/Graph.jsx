@@ -10,8 +10,10 @@ const Graph = (props) => {
   }, [])
 
   const data = props.meetings.map(meeting => {
+    meeting.name_date = meeting.meeting_name + '(' + String(meeting.time) + ')'
+    console.log(meeting.name_date)
     return {
-      name: meeting.meeting_name,
+      name_date: meeting.name_date,
       cost: meeting.cost
     }
   })
@@ -27,7 +29,7 @@ const Graph = (props) => {
     <LineChart width={600} height={300} data={data}>
       <Line type="monotone" dataKey="cost" stroke="#8884d8" />
       <CartesianGrid stroke="#ccc" />
-      <XAxis dataKey="name" />
+      <XAxis dataKey="name_date" />
       <YAxis />
     </LineChart>
   )

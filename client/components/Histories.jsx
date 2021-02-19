@@ -25,7 +25,9 @@ function Histories (props) {
   return (
     <div className='history-container'>
       <h1>Meeting History</h1>
-      <button onClick={handleGraphClick}>
+      <button
+        className='graph-button' 
+        onClick={handleGraphClick} >
           { !showingGraph ? "$how me the Graph-y" :
           "$how me the list-y" } 
       </button>
