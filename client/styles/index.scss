@@ -4,6 +4,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
 
 // Import custom variables and Bulma overides
+@import "./layout.scss";
 @import "./variables.scss";
 
 // Import only what you need from Bulma

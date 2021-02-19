@@ -93,6 +93,7 @@ function Meeting(props) {
 
 	return (
 		<div className="container">
+      <br></br>
 			<ul>
 				{props.users.map((u) => {
 					return (
@@ -104,23 +105,32 @@ function Meeting(props) {
 				})}
 			</ul>
       <form onSubmit={handleFormSubmit}>
+      <br></br>
         <label> Meeting Name
           <input type='text' name='meeting_name' placeholder='meeting name'> 
           </input>
+          <br></br>
+          <br></br>
           <button>
             set meeting name
           </button>
+          <br></br>
+          <br></br>
         </label>
       </form>
-     {formData != '' &&  <div><p>Meeting Name: {formData}</p>
+     {formData != '' &&  <div>
+       <p>Meeting Name: {formData}</p>
+       <br></br>
      {buttonStart ? (
       <button onClick={handleButtonChange}>Start Meeting</button>
     ) : (
       <button onClick={sendToHistory}>
         <Link to="/history">Stop Meeting</Link></button>
     )}
-    <p>{count}</p>
-    <p>${cost.toFixed(2)}</p> </div>
+    <br></br>
+    <br></br>
+    <p>Time Elapsed: {count}</p>
+    <p>Cost: ${cost.toFixed(2)}</p> </div>
      } 
 			
 		</div>
