@@ -35,6 +35,12 @@ function MeetingInfo (props) {
       setAttendeesShowing(!attendeesShowing)
     }
     // const meeting = props.meeting[0]
+
+    const convertSecondsToMinutes = (time) => {
+      const seconds = time % 60
+      const minutes = String((time - seconds)/60)
+      return minutes + ':' + String(seconds)
+    }
     
   return (
     <div className="meeting-item">
@@ -48,6 +54,10 @@ function MeetingInfo (props) {
         <li>{meetingLocal.attendees}</li>
         <li>{meetingLocal.time}</li>
         <li>{meetingLocal.cost}</li>
+        <li>{meetingLocal.meeting_length >= 60 ?
+          convertSecondsToMinutes(meetingLocal.meeting_length) :
+          '0:' + meetingLocal.meeting_length
+          }</li>
         <li>
           <button onClick={handleAttendees}>
             view Meeting attendees
