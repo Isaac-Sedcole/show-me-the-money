@@ -130,7 +130,7 @@ function Meeting(props) {
     <br></br>
     <br></br>
     <p>Time Elapsed: {count}</p>
-    <p>Cost: ${cost.toFixed(2)}</p> </div>
+    <p>Cost: ${Number(cost).toFixed(2)}</p> </div>
      } 
 			
 		</div>

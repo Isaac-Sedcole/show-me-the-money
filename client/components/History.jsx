@@ -26,6 +26,7 @@ function History(props) {
     
     
     console.log(reversedMeetings)
+    console.log(typeof reversedMeetings.cost)
     return (
       <div className="container">
 			<h2 className="title is-2">Meeting history</h2>
