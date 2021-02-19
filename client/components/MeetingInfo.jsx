@@ -44,10 +44,10 @@ function MeetingInfo (props) {
     
   return (
     <div className="meeting-item">
-     -- <button onClick={handleClick}
+    <button onClick={handleClick}
           className='meeting-button' >
        {meetingLocal.meeting_name} 
-      <em>{meetingLocal.time}</em>
+      {/* <em>{meetingLocal.time}</em> */}
     </button>
     {infoShowing && 
       
@@ -65,7 +65,7 @@ function MeetingInfo (props) {
 
         <li>
         <br></br>
-          <button onClick={handleAttendees}>
+          <button id='attendee-butt' onClick={handleAttendees}>
             view Meeting attendees
           </button>
         
