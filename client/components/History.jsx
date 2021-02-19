@@ -17,6 +17,12 @@ function History(props) {
       //props.dispatch(addComment(formData))
       e.target.meeting_name.value = ''
     }
+
+    const convertSecondsToMinutes = (time) => {
+      const seconds = time % 60
+      const minutes = String((time - seconds)/60)
+      return minutes + ':' + String(seconds)
+    }
     
     
     console.log(reversedMeetings)
@@ -33,8 +39,11 @@ function History(props) {
           </li>
           <li>How many people attended: {reversedMeetings.attendees}</li>
           <li>${reversedMeetings.cost.toFixed(2)}</li>
-          <li>Meeting Length(seconds): {reversedMeetings.meeting_length}</li>
+
+          <li>Meeting Length(minutes:seconds): {
+          convertSecondsToMinutes(reversedMeetings.meeting_length)}</li>
           <br></br>
+
         </ul>
           <form onSubmit={handleSubmit}>
             <label> Add comments:

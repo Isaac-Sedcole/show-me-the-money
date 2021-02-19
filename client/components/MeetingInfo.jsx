@@ -35,9 +35,18 @@ function MeetingInfo (props) {
       setAttendeesShowing(!attendeesShowing)
     }
     // const meeting = props.meeting[0]
+
+    const convertSecondsToMinutes = (time) => {
+      const seconds = time % 60
+      const minutes = String((time - seconds)/60)
+      return minutes + ':' + String(seconds)
+    }
+    
   return (
-    <div>
-    <button onClick={handleClick}>{meetingLocal.meeting_name} 
+    <div className="meeting-item">
+     -- <button onClick={handleClick}
+          className='meeting-button' >
+       {meetingLocal.meeting_name} 
       <em>{meetingLocal.time}</em>
     </button>
     {infoShowing && 
@@ -49,6 +58,10 @@ function MeetingInfo (props) {
         <li>Meeting date: {meetingLocal.time.substr(0, 10)}</li>
         <li>Meeting time: {meetingLocal.time.substr(11, 8)}</li>
         <li>Total cost: ${meetingLocal.cost}</li>
+        <li>{meetingLocal.meeting_length >= 60 ?
+          convertSecondsToMinutes(meetingLocal.meeting_length) :
+          '0:' + meetingLocal.meeting_length
+          }</li>
 
         <li>
         <br></br>

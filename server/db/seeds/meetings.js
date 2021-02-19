@@ -11,7 +11,7 @@ exports.seed = function(knex) {
           time: "2021-02-19T01:04:50.492Z", 
           attendees: 2,
           meeting_length: 1800,
-          cost: 1000.67 
+          cost: 100.55 
         },
       ]);
     });
