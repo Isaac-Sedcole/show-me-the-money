@@ -68,12 +68,15 @@ function MeetingInfo (props) {
           <button id='attendee-butt' onClick={handleAttendees}>
             view Meeting attendees
           </button>
-        
+          <br></br>
+          <br></br>
           {attendeesShowing && 
           <ul>
             {meeting.users.map(user => {
               return (
-                <li key={user.user_Id}>Attendees: {user.username}</li>
+                <>
+                <li key={user.user_Id}>{user.username}</li>
+                </>
               )
             })}
           </ul>}
