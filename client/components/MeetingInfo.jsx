@@ -35,7 +35,6 @@ function MeetingInfo (props) {
       setAttendeesShowing(!attendeesShowing)
     }
     // const meeting = props.meeting[0]
-    
   return (
     <div>
     <button onClick={handleClick}>{meetingLocal.meeting_name} 
@@ -44,10 +43,13 @@ function MeetingInfo (props) {
     {infoShowing && 
       
       <ul>
+
         <br></br>
-        <li>Attendee Number: {meetingLocal.attendees}</li>
-        <li>Time: {meetingLocal.time}</li>
-        <li>Cost: {meetingLocal.cost}</li>
+        <li>Attendees: {meetingLocal.attendees}</li>
+        <li>Meeting date: {meetingLocal.time.substr(0, 10)}</li>
+        <li>Meeting time: {meetingLocal.time.substr(11, 8)}</li>
+        <li>Total cost: ${meetingLocal.cost}</li>
+
         <li>
         <br></br>
           <button onClick={handleAttendees}>
